@@ -1,11 +1,18 @@
-﻿# Remember to install the EWS managed API from here:
+﻿#test
+# Remember to install the EWS managed API from here:
 # http://www.microsoft.com/downloads/en/details.aspx?displaylang=en&FamilyID=c3342fb3-fbcc-4127-becf-872c746840e1
 
-#\\storage\distrib\microsoft\exchange\exchange_web_services\EwsManagedApi32.msi
 Clear-Host
 # initial paramaters
 $fileName = "C:\trash\contacts.xml"
 $recurse = $true
+
+# loading additional resources
+$dllpath = "C:\Program Files\Microsoft\Exchange\Web Services\1.1\Microsoft.Exchange.WebServices.dll"
+[void][Reflection.Assembly]::LoadFile($dllpath)
+
+#
+Add-PSSnapin Microsoft.Exchange.Management.PowerShell.Admin -ErrorAction SilentlyContinue
 
 # Contact Mapping - this maps the attributes in the CSV file (left) to the attributes EWS uses.
 # NB: If you change these, please note "First Name" is specified at line 102 as a required attribute and
@@ -66,13 +73,6 @@ $ContactMapping=@{
     "Web Page" = "BusinessHomePage";
     "Contact Picture File" = "Method:SetContactPicture"
 }
-
-#
-#
-
-# loading additional resources
-$dllpath = "C:\Program Files\Microsoft\Exchange\Web Services\1.1\Microsoft.Exchange.WebServices.dll"
-[void][Reflection.Assembly]::LoadFile($dllpath)
 
 # creating table for imported data
 $ContactsTable = New-Object System.Data.DataTable "Contacts"
