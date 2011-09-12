@@ -1,5 +1,4 @@
-﻿#test
-# Remember to install the EWS managed API from here:
+﻿# Remember to install the EWS managed API from here:
 # http://www.microsoft.com/downloads/en/details.aspx?displaylang=en&FamilyID=c3342fb3-fbcc-4127-becf-872c746840e1
 
 Clear-Host
